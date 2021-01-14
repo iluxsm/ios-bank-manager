@@ -9,15 +9,10 @@ import Foundation
 import Dispatch
 
 struct BankClerk {
-    func serveCustomers(customers: Int) -> useconds_t {
-        let waitingCustomers = DispatchQueue(label: "Serial Queue")
-        waitingCustomers.sync {
-            for customer in 1...customers {
-                BankerMessage.printTaskText(customer: customer, state: .start)
-                usleep(700000)
-                BankerMessage.printTaskText(customer: customer, state: .completion)
-            }
-        }
-        return useconds_t(700000 * customers)
+    func serveCustomer(customer: CustomerInformation) -> Double {
+        BankerMessage.printTaskText(customer: customer, state: .start)
+        usleep(customer.type.rawValue.1)
+        BankerMessage.printTaskText(customer: customer, state: .completion)
+        return Double(customer.type.rawValue.1)
     }
 }

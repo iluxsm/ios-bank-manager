@@ -10,7 +10,7 @@ struct InputStateMessage {
         case initialization = """
         1 : 은행개점
         2 : 종료
-        입력 :  
+        입력 : 
         """
         case error = "올바른 입력을 부탁드립니다. 개점은 숫자 1을, 종료는 숫자 2를 입력해주세요!"
     }

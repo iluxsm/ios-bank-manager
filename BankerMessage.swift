@@ -9,19 +9,20 @@ import Foundation
 
 struct BankerMessage {
     enum TaskStates: String {
-        case start = "번 고객 업무 시작"
-        case completion = "번 고객 업무 완료"
+        case start = "업무 시작"
+        case completion = "업무 완료"
     }
-    static func printTaskText(customer: Int, state: TaskStates) {
+    static func printTaskText(customer: CustomerInformation, state: TaskStates) {
         switch state {
         case .start:
-            print("\(customer)" + state.rawValue)
+            print("\(customer.turn)번 \(customer.class)고객 \(customer.type.rawValue.0)" + state.rawValue)
         case .completion:
-            print("\(customer)" + state.rawValue)
+            print("\(customer.turn)번 \(customer.class)고객 \(customer.type.rawValue.0)" + state.rawValue)
         }
     }
-    
-    static func printCloseBankText(customers: Int, taskedTime: Double) {
-        print(("업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(customers)명이며, 총 업무시간은 \(String.init(format: "%.2f", Double(taskedTime) / 1000000))초 입니다."))
+
+    static func printCloseBankText(customers: [CustomerInformation], taskedTime: Double) {
+        print(("업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(customers.count)명이며, 총 업무시간은 \(String.init(format: "%.2f", Double(taskedTime) / 1000000))초 입니다."))
     }
 }
+
