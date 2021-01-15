@@ -57,12 +57,10 @@ struct BankManager {
                     break
                 }
                 let customer = customersQueue.removeFirst()
-                disposedClerk.async(group: group) {
-                    taskedTime += BankClerk().serveCustomer(customer: customer)
-                }
+                taskedTime += BankClerk().serveCustomer(customer: customer, queue: disposedClerk, group: group)
             }
-            group.wait()
         }
+        group.wait()
         return taskedTime
     }
 
